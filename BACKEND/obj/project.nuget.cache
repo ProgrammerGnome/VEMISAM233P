@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vnESsamS+d8=",
+  "dgSpecHash": "TkINA54aq6Q=",
   "success": true,
-  "projectFilePath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/VEMISAM233P_Backend.csproj",
+  "projectFilePath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/VEMISAM233P_Backend.csproj",
   "expectedPackageFiles": [
     "/home/kmark7/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/kmark7/.nuget/packages/microsoft.aspnetcore.jsonpatch/9.0.9/microsoft.aspnetcore.jsonpatch.9.0.9.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/VEMISAM233P_Backend.csproj": {}
+    "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/VEMISAM233P_Backend.csproj": {}
   },
   "projects": {
-    "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/VEMISAM233P_Backend.csproj": {
+    "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/VEMISAM233P_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/VEMISAM233P_Backend.csproj",
+        "projectUniqueName": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/VEMISAM233P_Backend.csproj",
         "projectName": "VEMISAM233P_Backend",
-        "projectPath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/VEMISAM233P_Backend.csproj",
+        "projectPath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/VEMISAM233P_Backend.csproj",
         "packagesPath": "/home/kmark7/.nuget/packages/",
-        "outputPath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P_Backend/obj/",
+        "outputPath": "/home/kmark7/Asztal/PE-MIK-manjaro/Projekt_alapu_szoftverfejlesztes/VEMISAM233P/BACKEND/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kmark7/.nuget/NuGet/NuGet.Config"
