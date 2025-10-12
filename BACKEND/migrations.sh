@@ -1,0 +1,1 @@
+dotnet ef migrations add InitialSetup --project VEMISAM233P_Backend && dotnet ef database update --project VEMISAM233P_Backend

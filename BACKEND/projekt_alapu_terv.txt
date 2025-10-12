@@ -1,0 +1,18 @@
+.NET webalkalmazás postgres kapcsolattal és a következő architektúrával:
+Controller réteg:
+- TaskHandler.cs:
+	- 1_VÉGPONT [TaskToDb()]: "Feltoltott_megoldasok" tábla [neptun_kod, bekuldott_megoldas] mezők adatainak fogadása, a többit automatikusan töltse ki és mentse el a DB-be.
+- LlmConnector.cs
+	- 1_VÉGPONT [TaskToLlmForCorrection()]: "Feltoltott_megoldasok.hallgato_id" alapján a hozzá tartozó "Feltoltott_megoldasok.bekuldott_megoldas" mezőből kiszedett programkódhoz betöltjük és elküldjük a Google Gemini API-jának a feladatot javításra, a választ pedig "Feltoltott_megoldasok" tábla [pont, ertekeles] mezőivel frissítjük.
+	- 2_VÉGPONT [TaskGenerator(param leiras)]: a "Prompt" tábla "programozas_zh" mezőjének értékének beolvasása, majd kiegészítése a leiras-sal. Ezt elkdüljük a Google Gemini API-nak, a választ pedig a "ZH" táblába mentjük.
+Model réteg:
+- Adatbázis táblák leképzése osztályokra (ORM)
+Repository réteg:
+- "ZH" tábla műveletei (ZhRepository.cs)
+- "Feltoltott_megoldasok" tábla műveletei (UploadedSolutionsRepository.cs)
+Service réteg:
+- TaskHandlerService.cs
+	- controller alapján az ide tartozó működtető logikák
+- LlmConnectorService.cs
+	- controller alapján az ide tartozó működtető logikák
+

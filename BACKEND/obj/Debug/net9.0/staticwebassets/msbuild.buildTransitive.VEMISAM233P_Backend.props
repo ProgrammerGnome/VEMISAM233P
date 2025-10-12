@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/VEMISAM233P_Backend.props" />
+</Project>
