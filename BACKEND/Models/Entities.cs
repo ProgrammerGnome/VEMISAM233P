@@ -26,6 +26,12 @@ namespace ProjectName.Models
         
         [Column("maxpont")]
         public int MaxPont { get; set; }
+
+        [Column("mintamegoldas")]
+        public string? Mintamegoldas { get; set; }
+
+        [Column("pontozasi_szempontok")]
+        public string? PontozasiSzempontok { get; set; }
     }
 
     // A Hallgato tábla leképzése

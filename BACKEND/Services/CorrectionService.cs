@@ -18,6 +18,7 @@ namespace ProjectName.Services
             _promptRepository = promptRepository;
         }
 
+        // PoC MÓDOSÍTÁS
         // TaskToLlmForCorrection() + Automatikus teszt kiértékelés
         public async Task<CorrectionResultDto> StartCorrection(CorrectionParamsDto dto)
         {
@@ -28,23 +29,27 @@ namespace ProjectName.Services
             var zh = solution.Zh;
             
             // Lekérjük a javítási prompt sablont
-            var sablon = await _promptRepository.GetPromptByNameAsync("javitas_prompt_template")
-                 ?? throw new Exception("A javításhoz szükséges prompt sablon hiányzik!");
+            var sablon = await _promptRepository.GetPromptByNameAsync("poc_javitas_prompt_template")
+                ?? throw new Exception("A javításhoz szükséges prompt sablon hiányzik!");
 
-            // 2. Prompt létrehozása
+            // 2. Prompt létrehozása - markdown struktúra alapján
             StringBuilder promptBuilder = new StringBuilder(sablon.PromptSzoveg);
-            promptBuilder.AppendLine($"\n--- Javítási Paraméterek ---");
-            promptBuilder.AppendLine($"Javítási fókusz: {dto.JavitasFokusz}");
-            promptBuilder.AppendLine($"Pontozási rendszer: {dto.PontozasiRendszer}");
-            promptBuilder.AppendLine($"Maximális pont: {zh.MaxPont}");
             
-            promptBuilder.AppendLine("\n--- ZH Feladat Leírása ---");
+            promptBuilder.AppendLine("\n--- ZÁRTHELYI FELADAT ---");
             promptBuilder.AppendLine(zh.Leiras);
             
-            promptBuilder.AppendLine("\n--- Hallgatói Megoldás ---");
+            promptBuilder.AppendLine("\n--- MINTAMEGOLDÁS ---");
+            promptBuilder.AppendLine(zh.Mintamegoldas ?? "Mintamegoldás nem elérhető");
+            
+            promptBuilder.AppendLine("\n--- PONTOZÁSI SZEMPONTOK ---");
+            promptBuilder.AppendLine(zh.PontozasiSzempontok ?? $"Maximális pont: {zh.MaxPont}");
+            
+            promptBuilder.AppendLine("\n--- HALLGATÓ MEGOLDÁSA ---");
             promptBuilder.AppendLine($"Programozási nyelv: {zh.ProgNyelv}");
             promptBuilder.AppendLine(solution.BekuldottMegoldas.Code);
-            
+
+            Console.WriteLine(promptBuilder);
+
             // 3. API hívás (Gemini API)
             var correctionResult = await _geminiClient.CorrectSolutionAsync(promptBuilder.ToString());
 

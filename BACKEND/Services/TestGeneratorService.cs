@@ -19,6 +19,7 @@ namespace ProjectName.Services
             _zhRepository = zhRepository;
         }
 
+        // PoC MÓDOSÍTÁS
         public async Task<int> GenerateAndSaveTest(TestParamsDto dto)
         {
             var sablon = await _promptRepository.GetPromptByNameAsync("programozas_zh_generalo") 
@@ -28,7 +29,9 @@ namespace ProjectName.Services
                 .Replace("{temakor}", dto.Temakor)
                 .Replace("{feladat_tipus}", dto.FeladatTipus)
                 .Replace("{prog_nyelv}", dto.ProgNyelv)
-                .Replace("{max_pont}", dto.MaxPont.ToString());
+                .Replace("{max_pont}", dto.MaxPont.ToString())
+                .Replace("{feladat_db}", dto.FeladatDb.ToString())
+                .Replace("{nehezsegi_szint}", dto.NehezsegiSzint);
             
             string jsonResponse = await _geminiClient.GenerateTestAsync(teljesPrompt);
 
