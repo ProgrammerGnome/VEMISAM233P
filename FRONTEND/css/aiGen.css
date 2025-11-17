@@ -1,0 +1,149 @@
+/*Specific css for aiGenerator.html
+
+    - main
+    - logo
+    - inputs
+    - textareas
+    - labels
+    - selects (dropdown still could be edited in js)
+    - button
+*/
+
+main{
+    margin: 30px 25px 25px 25px;
+    padding: 25px 20px 25px 20px;
+    border: 1px solid #DEE2E6;
+    border-radius: 24px;
+}
+
+.intro{
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.intro t{
+    color: rgba(21, 25, 29, 0.50);
+}
+
+.logo{
+    height: 80px;
+    width: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E6F2FF;
+    border-radius: 50%;
+}
+
+.logoText{
+    color: #007BFF;
+    font-weight: 400;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.selectRow{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+
+.selectGroup{
+    margin-bottom: 16px;
+}
+
+.formGroup{
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+label{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input{
+    width: calc(100% - 10px);
+    padding: 10px 5px 10px 5px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    display: block;
+    transition: border-color 0.1s;
+}
+
+input:hover{
+    border-color: #212529;
+}
+
+input:focus{
+    outline: none;
+    border-color: #007BFF;
+}
+
+textarea{
+    height: 90px;
+    width: calc(100% - 10px);
+    padding: 10px 5px 10px 5px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    resize: none;
+    transition: border-color 0.1s;
+}
+
+textarea:hover{
+    border-color: #212529;
+}
+
+textarea:focus{
+    outline: none;
+    border-color: #007BFF;
+}
+
+select{
+    padding: 10px 5px 10px 5px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    display: block;
+}
+
+select:hover{
+    border-color: #212529;
+}
+
+select:focus{
+    outline: none;
+    border-color: #007BFF;
+}
+
+button{
+    padding: 10px;
+    margin-top: 25px;
+    width: 100%;
+    font-size: 1rem;
+    color: #007BFF;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #007BFF;
+    border-radius: 4px;
+    display: block;
+    transition: border-color 0.1s;
+}
+
+button:hover{
+    color: #0056B3;
+    border-color: #0056B3;
+}

@@ -1,0 +1,76 @@
+/*Specific css for examList.html
+
+
+*/
+
+main{
+    padding: 30px 25px 25px 25px;
+}
+
+#pubTitle{
+    font-weight: bold;
+}
+
+.exam{
+    margin-top: 25px;
+    padding: 25px 20px 25px 20px;
+    border: 1px solid #DEE2E6;
+    border-radius: 24px;
+    display: flex;
+    column-gap: 20px;
+}
+
+.secColumn{
+    margin-top: 5px;
+}
+
+.dropdown{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #E6F2FF;
+}
+
+.exTitle{
+    font-weight: bold;
+}
+
+.mainInfs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0px 16px 0px;
+}
+
+.upperInfs{
+    padding: 5px;
+    background-color: #F8F9FA;
+    border-radius: 4px;
+    align-content: center;
+    color: rgba(21, 25, 29, 0.50);
+}
+
+.numInfs{
+    display: flex;
+    column-gap: 10px;
+}
+
+.thirdColumn{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.thirdColumn button{
+    height: 30px;
+    width: 30px;
+    color: #007BFF;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.thirdColumn button:hover{
+    color: #0056B3;
+    background-color: #F8F9FA;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodle AI exam generator</title>
+    <link rel="stylesheet" href="../css/defStyle.css">
+    <link rel="stylesheet" href="../css/aiGen.css">
+</head>
+<body>
+    
+    <header>
+        <h1 class="siteTitle">Dolgozatok</h1>
+        <nav class="navbar">
+            <ul>
+                <li class="inactiveNav"><a href="create.html">Készítés</a></li>
+                <li class="inactiveNav"><a href="upload.html">Feltöltés</a></li>
+                <li class="activeNav"><a href="aiGenerator.html">AI generátor</a></li>
+                <li class="inactiveNav"><a href="examList.html">Dolgozataim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="intro">
+            <div class="logo">
+                <h1 class="logoText">AI</h1>
+            </div>
+            AI dolgozat-generátor<br>
+            <t>Írja le dolgozatát és az AI legenerálja.</t>
+        </div>
+
+        <section class="details">
+            <div class="row">
+                <div class="formGroup">
+                    <label>Dolgozat címe</label>
+                    <input type="text", id="examTitle", placeholder="Adja meg a dolgozat címét">
+                </div>
+
+                <div class="formGroup">
+                    <label>Feladatszám</label>
+                    <input type="number", id="taskNumber", placeholder="Adja meg a feladatok számát">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="formGroup">
+                    <label>Tárgytematika</label>
+                    <textarea id="subjectTheme", placeholder="Adja meg a dolgozat tárgytematikáját"></textarea>
+                </div>
+
+                <div class="formGroup">
+                    <label>Mintadolgozat</label>
+                    <textarea id="example", placeholder="Adjon meg egy mintadolgozatot"></textarea>
+                </div>
+            </div>
+
+            <div class="formGroup">
+                <label>Témakör</label>
+                <textarea id="examTopic", placeholder="Adja meg a dolgozat témakörét"></textarea>
+            </div>
+
+            <div class="selectRow">
+                <div class="selectGroup">
+                    <label>Programozási nyelv</label>
+                    <select name="programmingLanguage" id="progLang">
+                        <option class="default" value="" selected hidden>Válasszon programozási nyelvet</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="C#">C#</option>
+                        <option value="Go">Go</option>
+                        <option value="Java">Java</option>
+                        <option value="Javascript">Javascript</option>
+                        <option value="Kotlin">Kotlin</option>
+                        <option value="PHP">PHP</option>
+                        <option value="Python">Python</option>
+                        <option value="Ruby">Ruby</option>
+                        <option value="Rust">Rust</option>
+                        <option value="Swift">Swift</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Nehézség</label>
+                    <select name="difficulty" id="diff">
+                        <option value="" selected hidden>Válasszon nehézséget</option>
+                        <option value="easy">Könnyű</option>
+                        <option value="medium">Közepes</option>
+                        <option value="hard">Nehéz</option>
+                    </select>
+                </div>
+            </div>
+
+            
+        </section>
+
+        <button type="submit">Generálás</button>
+
+    </main>
+
+</body>
+</html>
