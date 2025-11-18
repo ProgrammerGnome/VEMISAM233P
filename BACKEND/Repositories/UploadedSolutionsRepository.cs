@@ -19,6 +19,14 @@ namespace ProjectName.Repositories
 
         public async Task AddSolutionAsync(FeltoltottMegoldas solution)
         {
+            // JAVÍTAS:
+            var hallgatoExists = await _context.Hallgatok
+                .AnyAsync(h => h.NeptunKod == solution.HallgatoId);
+            if (!hallgatoExists)
+            {
+                throw new ArgumentException("A megadott Neptun-kódhoz nem tartozik létező hallgató.", nameof(solution.HallgatoId));
+            }
+
             await _context.FeltoltottMegoldasok.AddAsync(solution);
             await _context.SaveChangesAsync();
         }

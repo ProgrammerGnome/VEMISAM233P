@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VEMISAM233P_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44a5d5a607e8df3220fd7e5542c13c8e0d12c98e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83f45040b9dfb30c995054b3a999d99e9e357117")]
 [assembly: System.Reflection.AssemblyProductAttribute("VEMISAM233P_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VEMISAM233P_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
