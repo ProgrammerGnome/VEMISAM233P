@@ -1,0 +1,6 @@
+classes, structs, interfaces: PascalCase
+properties, methods, events: PascalCase
+variables, parameters: camelCase
+constants, static readonly: PascalCase
+private fields: camelCase
+files and directories: PascalCase

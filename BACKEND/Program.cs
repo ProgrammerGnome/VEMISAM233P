@@ -5,11 +5,10 @@ using ProjectName.Repositories;
 using ProjectName.Services;
 using ProjectName.Llm;
 using ProjectName.Models;
-using Npgsql; 
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 var assemblyName = typeof(Program).Assembly.GetName().Name ?? "ProjectName";
-
 var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
 
 if (string.IsNullOrEmpty(connectionString))
@@ -17,15 +16,15 @@ if (string.IsNullOrEmpty(connectionString))
     throw new InvalidOperationException("A 'PostgresConnection' kapcsolati sztring nem található vagy üres. Kérlek, ellenőrizd az appsettings.json fájlt.");
 }
 
-// 0. JSONB Szerializáció Engedélyezése (Npgsql 7.0+ ajánlott módszere)
+// 0. JSONB szerializáció engedélyezése (Npgsql 7.0+ ajánlott módszere)
 var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
 dataSourceBuilder.EnableDynamicJson(); 
 var dataSource = dataSourceBuilder.Build(); 
 
-// 1. PostgreSQL DbContext
+// 1. PostgreSQL adatbázis (DbContext)
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    // A DbContext most már a megfelelően beállított data source objektumot használja.
+    // a DbContext most már a megfelelően beállított data source objektumot használja
     options.UseNpgsql(dataSource);
 });
 
@@ -36,12 +35,12 @@ builder.Services.Configure<GeminiConfig>(
 // 2. HTTP Kliens a Gemini API-hoz
 builder.Services.AddHttpClient<IGeminiClient, GeminiClient>();
 
-// 3. Repository-k (Adatbázis elérés)
+// 3. Repository-k (adatbázis elérés avagy data access layer)
 builder.Services.AddScoped<IZhRepository, ZhRepository>();
 builder.Services.AddScoped<IUploadedSolutionsRepository, UploadedSolutionsRepository>();
 builder.Services.AddScoped<IPromptRepository, PromptRepository>();
 
-// 4. Service-ek (Üzleti logika)
+// 4. Service-ek (üzleti logika)
 builder.Services.AddScoped<SolutionService>();
 builder.Services.AddScoped<TestGeneratorService>();
 builder.Services.AddScoped<CorrectionService>();
@@ -57,13 +56,13 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-// --- Alkalmazás Építése ---
+// alkalmazás építése
 var app = builder.Build();
 
-// --- HTTP Request Pipeline konfigurációja ---
+// HTTP Request Pipeline konfigurációja
 if (app.Environment.IsDevelopment())
 {
-    // Opcionális: Migration alkalmazása startupkor
+    // migration alkalmazása startupkor (opcionális)
     using (var scope = app.Services.CreateScope())
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -77,5 +76,4 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

@@ -16,7 +16,7 @@ Ez a modul kezeli a ZH (Zárthelyi) feladatok regisztrációját, legyen az auto
 
 **Kulcs Logika:**
 
-1.  **Bemenet:** A kérés fogadja a `TestParamsDto`-t (témakör, programozási nyelv, max pontszám).
+1.  **Bemenet:** A kérés fogadja a `TestParametersDto`-t (témakör, programozási nyelv, max pontszám).
 2.  **Prompt Előkészítés:** A Service lekéri a '`programozas_zh_generalo`' nevű prompt sablont a `prompt_sablonok` adatbázis táblából.
 3.  **LLM Hívás:** A rendszer elküldi a promptot a **`gemini-2.5-flash-lite`** modellnek. A válasz fogadása **szigorú JSON formátumban** történik.
 4.  **Mentés:** A kapott JSON válasz (tartalmazza a '`leiras`' és '`cim`' mezőket) regisztrálásra kerül a `zh` táblába.

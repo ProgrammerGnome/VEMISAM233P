@@ -20,7 +20,7 @@ namespace ProjectName.Services
         }
 
         // PoC MÓDOSÍTÁS
-        public async Task<int> GenerateAndSaveTest(TestParamsDto dto)
+        public async Task<int> GenerateAndSaveTest(TestParametersDto dto)
         {
             var sablon = await _promptRepository.GetPromptByNameAsync("programozas_zh_generalo") 
                 ?? throw new Exception("A prompt sablon (programozas_zh_generalo) hiányzik a DB-ből!");

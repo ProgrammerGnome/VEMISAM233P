@@ -18,7 +18,7 @@ namespace ProjectName.Controllers
 
         // POST /api/test/generate
         [HttpPost("generate")]
-        public async Task<IActionResult> Generate([FromBody] TestParamsDto parameters)
+        public async Task<IActionResult> Generate([FromBody] TestParametersDto parameters)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             

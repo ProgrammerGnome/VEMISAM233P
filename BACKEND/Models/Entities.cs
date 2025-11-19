@@ -4,91 +4,132 @@ using ProjectName.Models.DTOs;
 
 namespace ProjectName.Models
 {
-    // A ZH tábla leképzése
-    [Table("zh")]
-    public class ZH
+    [Table("tests")]
+    public class Test
     {
         [Key]
-        [Column("zh_id")]
-        public int ZhId { get; set; }
+        [Column("id", TypeName = "integer")]
+        public int Id { get; set; }
 
-        [Column("targy_id")]
-        public string TargyId { get; set; } = string.Empty;
+        [Column("title", TypeName = "varchar(255)")]
+        public string Title { get; set; } = string.Empty;
+
+        [Column("description", TypeName = "varchar(255)")]
+        public string? Description { get; set; }
+
+        [Column("subject_name", TypeName = "varchar(255)")]
+        public string SubjectName { get; set; } = string.Empty;
         
-        [Column("cim")]
-        public string Cim { get; set; } = string.Empty;
-
-        [Column("leiras", TypeName = "text")]
-        public string? Leiras { get; set; } 
+        [Column("programming_language", TypeName = "varchar(255)")]
+        public string? ProgrammingLanguage { get; set; }
         
-        [Column("prog_nyelv")]
-        public string? ProgNyelv { get; set; }
-        
-        [Column("maxpont")]
-        public int MaxPont { get; set; }
+        [Column("maximum_achievable_points", TypeName = "integer")]
+        public int MaximumAchievablePoints { get; set; }
 
-        [Column("mintamegoldas")]
-        public string? Mintamegoldas { get; set; }
+        [Column("scoring_criteria", TypeName = "varchar(255)")] //consider TypeName = "text"
+        public string? ScoringCriteria { get; set; }
 
-        [Column("pontozasi_szempontok")]
-        public string? PontozasiSzempontok { get; set; }
+        [Column("sample_solution", TypeName = "varchar(255)")] //consider TypeName = "text"
+        public string? SampleSolution { get; set; }
+
+        [Column("is_active", TypeName = "integer")]
+        public int IsActive { get; set; } = 1;
+
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [Column("updated_at")]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 
-    // A Hallgato tábla leképzése
-    [Table("hallgato")]
-    public class Hallgato
+    [Table("tests")]
+    public class Test
     {
         [Key]
-        [Column("neptun_kod")]
-        [StringLength(6)]
-        public string NeptunKod { get; set; } = string.Empty;
+        [Column("id")]
+        public int Id { get; set; }
 
-        [Column("nev")]
-        public string Nev { get; set; } = string.Empty;
+        [Column("title")]
+        [Required]
+        [MaxLength(255)]
+        public string Title { get; set; } = string.Empty;
+
+        [Column("description", TypeName = "text")]
+        [Required]
+        public string Description { get; set; }
+
+        [Column("programming_language")]
+        [MaxLength(255)]
+        public string? ProgrammingLanguage { get; set; }
+        
+        [Column("maximum_achievable_points")]
+        public int MaximumAchievablePoints { get; set; }
+
+        [Column("scoring_criteria", TypeName = "text")]
+        public string? ScoringCriteria { get; set; }
+
+        [Column("sample_solution", TypeName = "text")]
+        public string? SampleSolution { get; set; }
+
+        [Column("is_active")]
+        public bool IsActive { get; set; } = true;
+
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [Column("updated_at")]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        // Navigation properties for related entities
+        public virtual ICollection<TestQuestion> Questions { get; set; } = new List<TestQuestion>();
+        public virtual ICollection<TestAttempt> Attempts { get; set; } = new List<TestAttempt>();
     }
 
-    // A Feltoltott_megoldasok tábla leképzése
-    [Table("feltoltott_megoldasok")]
-    public class FeltoltottMegoldas
+    [Table("solutions")]
+    public class Solution
     {
         [Key]
-        [Column("feltoltes_id")]
-        public int FeltoltesId { get; set; }
+        [Column("id", TypeName = "integer")]
+        public int Id { get; set; }
 
-        [Column("zh_id")]
-        public int ZhId { get; set; }
-        [ForeignKey(nameof(ZhId))]
-        public ZH Zh { get; set; } = null!; 
-        
-        [Column("hallgato_id")]
-        [StringLength(6)]
-        public string HallgatoId { get; set; } = string.Empty;
+        [ForeignKey(nameof(TestId))]
+        [Column("test_id")]
+        public int TestId { get; set; }
 
-        [ForeignKey(nameof(HallgatoId))]
-        public Hallgato Hallgato { get; set; } = null!;
+        [Column("content", TypeName = "jsonb")]
+        public string Content { get; set; } = string.Empty;
+        //public BekuldottMegoldasContent BekuldottMegoldas { get; set; } = new BekuldottMegoldasContent();
 
-        [Column("bekuldott_megoldas", TypeName = "jsonb")]
-        public BekuldottMegoldasContent BekuldottMegoldas { get; set; } = new BekuldottMegoldasContent();
+        [Column("achieved_points", TypeName = "integer")]
+        public int? AchievedPoints { get; set; } 
 
-        [Column("pont")]
-        public int? Pont { get; set; } 
+        [Column("response_text", TypeName = "text")]
+        public string? ResponseText { get; set; }
 
-        [Column("ertekeles", TypeName = "text")]
-        public string? Ertekeles { get; set; } 
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [Column("updated_at")]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 
-    // A Prompt sablonok tárolására
-    [Table("prompt_sablonok")]
-    public class Prompt
+    [Table("prompt_templates")]
+    public class PromptTemplate
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
         
-        [Column("sablon_nev")]
-        public string SablonNev { get; set; } = string.Empty; 
+        [Column("name")]
+        public string Name { get; set; } = string.Empty;
         
-        [Column("prompt_szoveg", TypeName = "text")]
-        public string PromptSzoveg { get; set; } = string.Empty; 
+        [Column("content", TypeName = "text")]
+        public string Content { get; set; } = string.Empty;
+
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [Column("updated_at")]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 }

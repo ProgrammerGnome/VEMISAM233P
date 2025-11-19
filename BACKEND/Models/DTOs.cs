@@ -1,92 +1,65 @@
 using System.ComponentModel.DataAnnotations;
+using ProjectName.Models.DOs;
 
 namespace ProjectName.Models.DTOs
 {
-    public record TestParamsDto
+    public record TestParametersDto
     {
-        [Required] public string TargyId { get; init; } = string.Empty;
-        [Required] public string Temakor { get; init; } = string.Empty;
-        public string FeladatTipus { get; init; } = "programozás";
-        public string ProgNyelv { get; init; } = "C#";
-        public int MaxPont { get; init; } = 10;
-        public int FeladatDb { get; init; } = 1;
-        public string NehezsegiSzint { get; init; } = "közepes";
+        [Required] public string SubjectId { get; init; } = string.Empty;
+        [Required] public string TopicName { get; init; } = string.Empty;
+        public string TaskTypeName { get; init; } = "programozás";
+        public string ProgrammingLanguage { get; init; } = "C#";
+        public int MaximumAchievablePoints { get; init; } = 10;
+        public int NumberOfTasks { get; init; } = 1;
+        public string DifficultyLevelName { get; init; } = "közepes";
     }
 
-    public class BekuldottMegoldasContent // <<< ÁTNEVEZTÜK a SubmissionData helyett, hogy ne legyen zavar
+    public record SolutionSubmissionFormDto
     {
-        [Required]
-        public string Code { get; set; } = string.Empty; 
-        
-        public string FileName { get; set; } = string.Empty;
-        public string EnvironmentDetails { get; set; } = string.Empty;
+        [Required] public int TaskId { get; init; }
+        [Required] public string NeptunCode { get; init; } = string.Empty;
+        [Required] public IFormFile CodeFile { get; init; } = null!; // a feltöltött fájl
     }
 
-    public record SolutionSubmitFormDto
+    // megoldás beküldés (Controller/Service)
+    public record SolutionSubmissionDto
     {
-        [Required] public int ZhId { get; init; }
-        [Required] public string NeptunKod { get; init; } = string.Empty;
-        
-        [Required] 
-        public IFormFile CodeFile { get; init; } = null!; // A feltöltött fájl
+        [Required] public int TestId { get; init; }
+        [Required] public string NeptunCode { get; init; } = string.Empty;
+        [Required] public SolutionSubmissionDo SolutionSubmissionDo { get; init; } = new SolutionSubmissionDo();
     }
 
-    public record SubmissionData
+    // kiértékelés (Controller/Service)
+    public record CorrectionParametersDto
     {
-        [Required] 
-        public int ZhId { get; init; }
-        
-        [Required] 
-        public string NeptunKod { get; init; } = string.Empty;
-        
-        [Required] 
-        public IFormFile CodeFile { get; init; } = null!;
+        [Required] public int uploadId { get; init; } 
+        [Required] public string ScoringSystemText { get; init; } = string.Empty;
+        [Required] public string? TopicName { get; init; } = string.Empty;
+        public string? ProgrammingLanguage { get; init; }
+        public int? MaximumAchievablePoints { get; init; }
+        public string? SampleSolution { get; init; }
+        [Required] public string? ScoringCriteria { get; init; } = string.Empty;
+        [Required] public string? TaskDescription { get; init; } = string.Empty;
     }
 
-    // --- Megoldás Beküldés (Controller/Service) ---
-    public record SolutionSubmitDto
-    {
-        [Required] public int ZhId { get; init; }
-        [Required] public string NeptunKod { get; init; } = string.Empty;
-        [Required] public SubmissionData BekuldottMegoldas { get; init; } = new SubmissionData();
-    }
-
-    // --- Kiértékelés (Controller/Service) ---
-    public record CorrectionParamsDto
-    {
-        [Required] public int FeltoltesId { get; init; } 
-        [Required] public string PontozasiRendszer { get; init; } = string.Empty;
-        [Required] public string? Temakor { get; init; } = string.Empty;
-        public string? ProgNyelv { get; init; }
-        public int? MaxPont { get; init; }
-        public string? Mintamegoldas { get; init; }
-        [Required] public string? PontozasiSzempontok { get; init; } = string.Empty;
-        [Required] public string? FeladatLeiras { get; init; } = string.Empty;
-    }
-
-    // --- Gemini Válasz DTO ---
+    // javítási válasz DTO
     public record CorrectionResultDto
     {
-        public int Pont { get; init; }
-        public string Ertekeles { get; init; } = string.Empty;
+        public int AchievedPoints { get; init; }
+        public string ResponseText { get; init; } = string.Empty;
     }
     
-    // --- Prompt Frissítés ---
+    // prompt frissítés
     public record PromptUpdateDto
     {
-        [Required] public string SablonNev { get; init; } = string.Empty;
-        [Required] public string PromptSzoveg { get; init; } = string.Empty;
+        [Required] public string TemplateName { get; init; } = string.Empty;
+        [Required] public string PromptText { get; init; } = string.Empty;
     }
 
-    // --- DTO a külső teszt feltöltéshez ---
+    // DTO a külső teszt feltöltéshez
     public record ExternalTestUploadDto
     {
-        // A feltöltött fájl
-        [Required] 
-        public IFormFile File { get; init; } = null!;
-        
-        // A hozzá tartozó metadata (JSON stringként)
-        [Required] 
-        public string ZhMetadataJson { get; init; } = string.Empty;
+        [Required] public IFormFile File { get; init; } = null!; // a feltöltött fájl
+        [Required] public string TestMetadataJson { get; init; } = string.Empty; // a feltöltött fájlhoz tartozó metadata (JSON stringként)
     }
 }
